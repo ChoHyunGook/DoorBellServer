@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1296.0",
+    "axios": "^1.2.2",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "concurrently": "^7.6.0",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.0",
+    "moment-timezone": "^0.5.40",
+    "mongodb": "^4.0.0",
+    "mongodb-legacy": "^4.0.0",
+    "mongoose": "^6.8.3",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "concurrently \" npm start \"  \" npm start --prefix ../web-front  \""
+  },
+  "type": "module"
+}
