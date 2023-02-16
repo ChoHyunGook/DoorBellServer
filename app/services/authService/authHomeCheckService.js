@@ -51,6 +51,15 @@ export default function AuthHomeCheckService(){
                         res.status(200).send('관리자 로그인 성공')
                     }
                 }
+        },
+
+        authLogout(req,res){
+            try {
+                res.clearCookie('authLoginToken','')
+                res.status(200).send('Auth Logout Success')
+            }catch (err){
+                res.status(400).send(err)
+            }
         }
 
     }

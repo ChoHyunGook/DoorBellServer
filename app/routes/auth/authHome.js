@@ -35,5 +35,12 @@ app.post('/authLogin',cors(corsOptions),(req,res)=>{
     AuthHomeCheckService().authLogin(req,res)
 })
 
+app.get('/authLogout',cors(corsOptions),(req,res)=>{
+    console.log('로그아웃진입')
+    AuthHomeCheckService().authLogout(req,res)
+})
+
+
+
 
 export default app

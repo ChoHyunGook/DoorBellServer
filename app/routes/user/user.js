@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors"
 import dotenv from "dotenv"
 import UserService from "../../services/userService/userService.js";
-import CheckService from "../../services/authService/checkService.js";
 dotenv.config()
 
 const corsOptions = {
