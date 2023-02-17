@@ -25,6 +25,9 @@ app.post('/uploadOne',cors(corsOptions),(req,res)=>{
 app.post('/findOne',cors(corsOptions),(req,res)=>{
     TableService().read(req,res)
 })
+app.post('/findOneMobile',cors(corsOptions),(req,res)=>{
+    TableService().readMobile(req,res)
+})
 
 app.post('/tableEdit',cors(corsOptions),(req,res)=>{
     TableService().update(req,res)

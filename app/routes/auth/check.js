@@ -19,7 +19,7 @@ app.use(cors({
 
 app.use(function(_req, res, next) {
     res.header(
-        "Access-Control-Allow-Headers",
+        "Access-Control-Allow-Tabletheaders",
         "x-access-token, Origin, Content-Type, Accept",
         "Access-Control-Allow-Origin", "*"
     );
@@ -57,6 +57,9 @@ app.get('/signAllCheck',cors(corsOptions),(req,res)=>{
 
 app.get('/authModifySignCheck',cors(corsOptions),(req,res)=>{
     CheckService().authModifySignCheck(req,res)
+})
+app.get('/searchDataCheck',cors(corsOptions),(req,res)=>{
+    CheckService().searchDataCheck(req,res)
 })
 
 

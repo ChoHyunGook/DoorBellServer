@@ -139,6 +139,7 @@ export default function CheckService(){
 
         exclusiveNtermsNloginSignCheck(req, res) {
             try {
+                res.clearCookie('dbDataToken')
                 res.clearCookie('authModifyToken')
                 res.clearCookie('authNumToken')
                 res.clearCookie('exclusiveToken')
@@ -168,6 +169,28 @@ export default function CheckService(){
                         res.status(200).send('비밀번호 인증 중...')
                     }
                 })
+            }catch (e) {
+                if(e.name === 'TokenExpiredError'){
+                    res.status(500).send('인증시간이 만료되었습니다.')
+                }
+            }
+        },
+
+        searchDataCheck(req,res){
+            try {
+                const token = req.cookies.dbDataToken
+                const data = jwt.verify(token,access_jwt_secret)
+
+                jwt.verify(token,access_jwt_secret,(err)=>{
+                    if(err){
+                        res.status(400).send('검색결과 없음')
+                    }else {
+                        console.log(data.userData)
+                        res.status(200).send(data.userData)
+                    }
+                })
+
+
             }catch (e) {
                 if(e.name === 'TokenExpiredError'){
                     res.status(500).send('인증시간이 만료되었습니다.')

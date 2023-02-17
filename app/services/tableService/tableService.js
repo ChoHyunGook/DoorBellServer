@@ -263,7 +263,190 @@ export default function TableService(){
                     res.status(500).send('로그인 시간이 만료되었습니다.')
                 }
             }
-        }
+        },
+
+        readMobile(req,res){
+            const data = req.body
+            let searchType = data.selectBox
+            const searchTarget = data.searchText
+
+
+            const token = req.cookies.accessToken
+            const tokenData = jwt.verify(token,access_jwt_secret)
+
+            try {
+                jwt.verify(token,access_jwt_secret,(err)=>{
+                    if(err){
+                        res.status(400).send('로그인 후 사용해주세요')
+                    }
+                    else {
+                        if(searchType === 'contract'){
+                            Table.find({contract:searchTarget}, function (err,board){
+
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 계약번호가 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 계약번호가 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 계약번호가 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+
+                        else if(searchType === 'terminalNum'){
+
+                            Table.find({terminalNum:searchTarget}, function (err,board){
+
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 단말기번호가 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 단말기번호가 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 단말기번호가 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+
+                        else if(searchType === 'contractName'){
+
+                            Table.find({contractName:searchTarget}, function (err,board){
+
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 계약자명이 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 계약자명이 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 계약자명이 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+
+                        else if(searchType === 'phoneNum'){
+
+                            Table.find({phoneNum:searchTarget}, function (err,board){
+
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 연락처가 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 연락처가 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 연락처가 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+
+                        else if(searchType === 'serviceType'){
+
+                            Table.find({serviceType:searchTarget}, function (err,board){
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 서비스종류가 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 서비스종류가 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 서비스종류가 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+
+                        else if(searchType === 'id'){
+                            Table.find({id:searchTarget}, function (err,board){
+                                if(board && board.length === 0){
+                                    res.status(400).send('일치하는 ID가 없습니다.')
+                                }else{
+                                    let comp = board.find(item => item.contractName)
+                                    if(tokenData.company === comp.contractName){
+                                        const dbDataToken = jwt.sign({
+                                            userData: board
+                                        },access_jwt_secret)
+
+                                        res.cookie('dbDataToken',dbDataToken,{
+                                            secure:false,
+                                            httpOnly:true
+                                        })
+                                        res.status(200).send('Success')
+                                    }else if(err){
+                                        res.status(400).send('일치하는 ID가 없습니다.')
+                                    }else{
+                                        res.status(400).send('일치하는 ID가 없습니다.(회사틀림)')
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+            catch (e){
+                if(e.name === 'TokenExpiredError'){
+                    res.status(500).send('로그인 시간이 만료되었습니다.')
+                }
+            }
+        },
+
 
 
 
