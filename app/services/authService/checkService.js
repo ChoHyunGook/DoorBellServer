@@ -185,7 +185,6 @@ export default function CheckService(){
                     if(err){
                         res.status(400).send('검색결과 없음')
                     }else {
-                        console.log(data.userData)
                         res.status(200).send(data.userData)
                     }
                 })
